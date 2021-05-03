@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pasantia XGBOOTS</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/styles/agate.min.css"
+      integrity="sha512-dtcZayDwnLWcHMKRgV5S5qk2T4+jz45M89ychxm+Rl9/bA/SiqD59y9ZNoMVDFo7Hnss/O8MruCqWLL5yDv/aQ=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <nav>
+      <input type="checkbox" id="check" />
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">XGBoost</label>
+      <ul>
+        <li><a href="#info1">¿Que es XGBOOST?</a></li>
+        <li><a href="#info2">¿Para que se utiliza?</a></li>
+        <li><a href="#info3">Implementacion</a></li>
+        <li><a href="#info4">Ejemplo</a></li>
+      </ul>
+    </nav>
+    <div class="container">
+      <div class="info">
+        <h1>Implementacion de XGBoost para la prediccion de datos</h1>
+        <div class="info1" id="info1">
+          <div class="text">
+            <h2 class="subtitulo">¿Que es XGBoots?</h2>
+            <p>
+              Extreme Gradient Boosting (XGBoost) es una biblioteca de código
+              abierto que proporciona una implementación eficiente y efectiva
+              del algoritmo de aumento de gradiente.<br />
+              Poco después de su desarrollo y lanzamiento inicial, XGBoost se
+              convirtió en el método de referencia y, a menudo, en el componente
+              clave para obtener soluciones para una variedad de problemas en
+              las competencias de aprendizaje automático.
+              <a
+                href="https://machinelearningmastery.com/xgboost-for-regression/"
+                >Mas...</a
+              >
+            </p>
+          </div>
+          <img src="img/Question.svg" class="img" alt="" />
+        </div>
+
+        <div class="info2" id="info2">
+          <img src="img/Creative Process.svg" class="img" alt="" />
+
+          <div class="text">
+            <h2 class="subtitulo">¿Para que se utiliza?</h2>
+            <p>
+              Para la resolucion de modelos predictivos de regresión que
+              implican la predicción de un valor numérico, como una cantidad en
+              dólares o una altura. XGBoost se puede utilizar directamente para
+              el modelado predictivo de regresión.
+              <a
+                href="https://machinelearningmastery.com/xgboost-for-regression/"
+                >Mas...</a
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="info3" id="info3">
+          <div class="text">
+            <h2 class="subtitulo">Implementacion</h2>
+            <p>
+              XGBoost se puede instalar como una biblioteca independiente y se
+              puede desarrollar un modelo XGBoost utilizando la API
+              scikit-learn.<br />
+              <a
+                href="https://machinelearningmastery.com/xgboost-for-regression/"
+                >Mas...</a
+              >
+            </p>
+          </div>
+
+          <div class="info3-cards">
+            <div class="info3-card">
+              <h3>Instalacion</h3>
+              <pre>
+                    <code class="Python tam">#Si aun no esta instalado lo puedes hacer con el administrador de paquetes de python pip
+sudo pip install xgboost
+#verificamos la version luego de instalar
+import xgboost
+print(xgboost.__version__)</code>
+                </pre>
+            </div>
+
+            <div class="info3-card">
+              <h3>Inicializacion</h3>
+              <pre>
+                    <code class="Python tam">#Definimos una instancia de la clase 
+model = XGBRegressor()
+#La instancia de la clase resive ciertos hiperparametros los 
+#cuales ayudan a una mejor precision en la prediccion
+model = XGBRegressor(n_estimators=1000, max_depth=7, eta=0.1, subsample=0.7, colsample_bytree=0.8)</code>
+                </pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="info4" id="info4">
+          <div class="text">
+            <h2 class="subtitulo">Ejemplo</h2>
+            <p>
+              Luego ver en que es y en que consiste XGBoost ademas de instalar,
+              verificar e inicializarlo veamos por medio de un ejemplo el gran
+              potencial que este tiene para la prediccion de y analisis de
+              datos.
+              <br /><br />
+              Nos piden predecir el nivel de obesidad de una persona con base en
+              sus hábitos alimenticios.<br />
+              Los datos que utilizaremos son los siguientes:
+            </p>
+            <ul>
+              <li>
+                <a
+                  href="https://archive.ics.uci.edu/ml/datasets/Estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition+"
+                  >Datos para el analisis</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.sciencedirect.com/science/article/pii/S2352340919306985?via%3Dihub"
+                  >Informacion sobre los datos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://drive.google.com/drive/folders/16_TscYoCd9aZgbBrhmmJrriKI8dluEnr?usp=sharing"
+                  >Ejemplo terminado</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="info4-codigo ">
+            <p>Importamos lo necesario para realizar el ejercicio</p>
+            <pre>
+                <code class="Python">import pandas as pd
+import xgboost as xgb
+import numpy as np
+
+from sklearn import linear_model
+from xgboost import XGBClassifier,XGBRegressor
+
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import cross_val_predict
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt</code>
+            </pre>
+
+            <p>Leemos los datos y los mostramos</p>
+            <pre>
+                <code class="Python">data=pd.read_csv("/content/drive/MyDrive/pasantia/ObesityDataSet_raw_and_data_sinthetic.csv")
+data.head()
+
+     Gender	    Age	    Height	Weight	family_history_with_overweight	FAVC	   FCVC	    NCP	    CAEC	    SMOKE	    CH2O	    SCC	 FAF	    TUE	    CALC	    MTRANS	                    NObeyesdad
+0	Female	21.0	1.62	64.0	yes	                                no	    2.0	    3.0	    Sometimes	    no	                2.0	    no	 0.0	    1.0	    no	        Public_Transportation	    Normal_Weight
+1	Female	21.0	1.52	56.0	yes	                                no	    3.0	    3.0	    Sometimes	    yes	                3.0	    yes	 3.0	    0.0	    Sometimes	Public_Transportation	    Normal_Weight
+2	Male	23.0	1.80	77.0	yes	                                no	    2.0	    3.0	    Sometimes	    no	                2.0	    no	 2.0	    1.0	    Frequently	Public_Transportation	    Normal_Weight
+3	Male	27.0	1.80	87.0	no	                                no	    3.0	    3.0	    Sometimes	    no	                2.0	    no	 2.0	    0.0	    Frequently	Walking	                    Overweight_Level_I
+4	Male	22.0	1.78	89.8	no	                                no	    2.0	    1.0	    Sometimes	    no	                2.0	    no	 0.0	    0.0	    Sometimes	Public_Transportation	    Overweight_Level_II
+</code>
+            </pre>
+
+            <p>
+              Ahora debemos realizar una transformacion de los datos que son
+              cualitativos en valores numericos ya que el modelo solo funciona
+              con valores numericos, le presentaremos una opcion pero usted esta
+              en la libertad de probar otra forma
+            </p>
+
+            <pre>
+                <code class="Python">data["Gender"]=data["Gender"].map({"Male":0,"Female":1})
+data["family_history_with_overweight"]=data["family_history_with_overweight"].map({"no":0,"yes":1})
+data["FAVC"]=data["FAVC"].map({"no":0,"yes":1})
+data["CAEC"]=data["CAEC"].map({"no":0,"Sometimes":1,"Frequently":2,"Always":3})
+data["SMOKE"]=data["SMOKE"].map({"no":0,"yes":1})
+data["SCC"]=data["SCC"].map({"no":0,"yes":1})
+data["CALC"]=data["CALC"].map({"no":0,"Sometimes":1,"Frequently":2,"Always":3})
+data["MTRANS"]=data["MTRANS"].map({"Automobile":0,"Public_Transportation":1,"Motorbike":2,"Always":3,"Bike":4,"Walking":5})
+data["NObeyesdad"]=data["NObeyesdad"].map({"Insufficient_Weight":0,"Normal_Weight":1,"Overweight_Level_I":2,"Overweight_Level_II":3,"Obesity_Type_I":4,"Obesity_Type_II":5,"Obesity_Type_III":6})
+data.head()
+
+
+
+    Gender	Age	Height	Weight	family_history_with_overweight	FAVC	FCVC	NCP	CAEC	SMOKE	CH2O	SCC	FAF	TUE	CALC	MTRANS	NObeyesdad
+0	1	21.0	1.62	64.0	                             1	0	 2.0	3.0	    1	0	    2.0	  0	0.0	1.0	 0	      1	   1
+1	1	21.0	1.52	56.0	                             1	0	 3.0	3.0	    1	1	    3.0	  1	3.0	0.0	 1	      1	   1
+2	0	23.0	1.80	77.0	                             1	0	 2.0	3.0	    1	0	    2.0	  0	2.0	1.0	 2	      1	   1
+3	0	27.0	1.80	87.0	                             0	0	 3.0	3.0	    1	0	    2.0	  0	2.0	0.0	 2	      5	   2
+4	0	22.0	1.78	89.8	                             0	0	 2.0	1.0	    1	0	    2.0	  0	0.0	0.0	 1	      1	   3
+                </code>
+            </pre>
+
+            <p>
+              Eliminamos los datos incompletos o NAN y realizamos la separacion
+              de los datos en "X" para los habitos y "y" para las
+              clasificaciones para luego separarlos en los datos de entreno y de
+              prueba
+            </p>
+
+            <pre>
+                <code class="Python">data=data.dropna()
+X=data.loc[:,data.columns!="NObeyesdad"]
+y=data.loc[:,"NObeyesdad"]
+X_train,X_test,y_train,y_test=train_test_split(X,y,random_state=1)
+                </code>
+            </pre>
+
+            <p>
+              Ahora solo debemos inicializar la clase XGBRegressor para poder
+              utilizarla y realizaremos el entreno del modelo
+            </p>
+            <pre>
+                <code class="Python">model=XGBRegressor(objective ='reg:squarederror')
+model.fit(X_train.values,y_train.values)
+
+#Esta es la configuracion por defecto por ensayo y error se puede lograr 
+#una mejor configuracion de datos o algun metodo que te ayude a obtenerlos
+
+XGBRegressor(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+             colsample_bynode=1, colsample_bytree=1, gamma=0,
+             importance_type='gain', learning_rate=0.1, max_delta_step=0,
+             max_depth=3, min_child_weight=1, missing=None, n_estimators=100,
+             n_jobs=1, nthread=None, objective='reg:squarederror',
+             random_state=0, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
+             seed=None, silent=None, subsample=1, verbosity=1)
+                </code>
+            </pre>
+
+            <p>Graficamos la importancia de las variables en el modelo</p>
+            <pre>
+                <code class="Python">xgb.plot_importance(model,ax=plt.gca())</code>
+               
+            </pre>
+            <img src="img/importancia.png" alt="" />
+            <p>
+              Llego el momento de realizar las predicciones con los valores de
+              prueba
+            </p>
+
+            <pre>
+                <code class="Python">prediccion=model.predict(X_test.values)
+#convertimos los valores en positivo
+prediccion=np.absolute(prediccion)
+#mostramos los 10 primeros
+prediccion[0:10]</code>
+            </pre>
+
+            <p>
+              A continuacion mostraremos el puntaje de entrenamiendo del modelo,
+              el promedio del entrenamientoy, el error cuadratico medio y su
+              raiz
+            </p>
+
+            <pre>
+                <code class="Python">#miramos el puntaje de entrenamiento
+score=model.score(X_train.values,y_train.values)
+print("Training score: ",score)
+#miramos el puntaje promedio de entrenamiento
+cv_score=cross_val_score(model,X_train.values,y_train.values,cv=10)
+print("CV mean score: ",cv_score.mean())
+#Mostramos el Error cuadratico medio y la raiz 
+mse=mean_squared_error(y_test.values,prediccion)
+print("MSE: ",mse)
+print("RMSE: ",mse*(1/2.0))
+                </code>
+            </pre>
+
+            <p>
+              Mostraremos dos visualizaciones de los datos para observar su
+              comportamiento
+            </p>
+            <pre>
+                <code class="Python">x_ax=range(len(y_test.values))
+plt.plot(x_ax,y_test.values,label="Original")
+plt.plot(x_ax,prediccion,label="Prediccion")
+plt.title("Sobre peso prediccion")
+plt.legend()
+plt.show()
+                </code>
+               
+            </pre>
+            <img src="img/grafica1.png" alt="" />
+            <pre>
+                <code class="Python">lr=linear_model.LinearRegression()
+prediccion1=cross_val_predict(lr,X,y,cv=10)
+                    
+fig,ax=plt.subplots()
+ax.scatter(y.values,prediccion1)
+ax.plot([y.min(), y.max()], [y.min(), y.max()], 'k--', lw=2)
+ax.set_xlabel("Measured")
+ax.set_ylabel("Predicted")
+plt.title("Sobre peso prediccion")
+plt.show()</code>
+            
+            </pre>
+            <img src="img/grafica2.png" alt="" />
+            <p>
+              Llegados a este punto nuestro modelo ha sido entrenado y ya esta
+              en la capacidad de predecir dependendo de los valores que le
+              introduzcas, te dejamos unas ideas para que practiques, analices y
+              aprendas mucho mas sobre este gran modelo
+            </p>
+            <pre>
+                <code class="Python">#test de dato
+from numpy import asarray
+#row=[1,24.0,1.77,73.0,1,0,3.0,3.0,1,0,2.0,0,1.0,1.0,0,1]
+row=[0,18.0,1.77,90.0,1,0,3.0,3.0,1,0,2.0,0,1.0,1.0,0,1]
+#row=[0,30.0,1.67,90.0,1,0,3.0,3.0,1,0,2.0,0,1.0,1.0,0,1]
+nueva_data=asarray([row])
+prediccion_test=model.predict(nueva_data)
+
+print("Prediccion: ",prediccion_test)
+                </code>
+            </pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"
+      integrity="sha512-s+tOYYcC3Jybgr9mVsdAxsRYlGNq4mlAurOrfNuGMQ/SCofNPu92tjE7YRZCsdEtWL1yGkqk15fU/ark206YTg=="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      hljs.highlightAll();
+    </script>
+  </body>
+</html>
